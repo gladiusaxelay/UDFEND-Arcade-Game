@@ -31,6 +31,21 @@ Enemy.prototype.update = function (dt) {
         let changeVel = Math.floor(Math.random() * 500 + 1);
         this.vel = changeVel;
     }
+
+    // Bug size ~(68x68)
+    // Logic to check if the players starts to occupy 
+    // the same space as the bugs
+    let checkRight = this.posX + 68;
+    let checkLeft = this.posX - 68;
+    let checkUp = this.posY - 68;
+    let checkDown = this.posY + 68;
+    // If the player is detected around the above boundaries, a bug 
+    // got him and he must begin again
+    if (player.posX > checkLeft && player.posX < checkRight &&
+        player.posY > checkUp && player.posY < checkDown) {
+        player.resetPlayer();
+    }
+
 };
 
 // Draw the enemy on the screen, required method for game
