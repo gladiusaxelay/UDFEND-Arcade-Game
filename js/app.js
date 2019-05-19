@@ -56,22 +56,43 @@ Player.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.posX, this.posY);
 };
 
+Player.prototype.resetPlayer = function () {
+    this.posX = 202;
+    this.posY = 404;
+}
+
 Player.prototype.handleInput = function (whereTo) {
     switch (whereTo) {
-        case 'up':
-            // move ...
+        
+        case 'left':
+            if (this.posX >= this.horMove) {
+                this.posX -= this.horMove;
+            } else {
+                this.posX += 0;
+            }
             break;
 
         case 'down':
-            // move ...
-            break;
-
-        case 'left':
-            // move ...
+            if (this.posY <= this.verMove * 4){
+                this.posY += this.verMove;
+            } else {
+                this.posY += 0;
+            }
             break;
 
         case 'right':
-            // move ...
+            if (this.posX <= this.horMove * 3) {
+                this.posX += this.horMove;
+            } else {
+                this.posX += 0;
+            }
+            break;
+
+        case 'up':
+            this.posY -= this.verMove;
+            if (this.posY <= 10){
+                this.resetPlayer();
+            }
             break;
     }
 };
