@@ -45,6 +45,7 @@ var Engine = (function(global) {
          * our update function since it may be used for smooth animation.
          */
         update(dt);
+        // console.log(now);
         render();
 
         /* Set our lastTime variable which is used to determine the time delta
@@ -78,7 +79,7 @@ var Engine = (function(global) {
      * on the entities themselves within your app.js file).
      */
     function update(dt) {
-        updateEntities(dt);
+        // updateEntities(dt);
         // checkCollisions();
     }
 
@@ -138,7 +139,7 @@ var Engine = (function(global) {
             }
         }
 
-        renderEntities();
+        // renderEntities();
     }
 
     /* This function is called by the render function and is called on each game
