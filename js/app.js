@@ -28,7 +28,7 @@ Enemy.prototype.update = function (dt) {
     // reset their position and very the enemy speed
     if (this.posX > 505) {
         this.posX = -50;
-        let changeVel = Math.floor(Math.random() * 300);
+        let changeVel = Math.floor(Math.random() * 500 + 1);
         this.vel = changeVel;
     }
 };
@@ -77,8 +77,8 @@ Player.prototype.handleInput = function (whereTo) {
 };
 
 // Now instantiate your objects.
-let bug1 = new Enemy(0, 60 + 80 * 0, 300);
-let bug2 = new Enemy(0, 60 + 80 * 1, 300);
+let bug1 = new Enemy(0, 60 + 80 * 0, 100);
+let bug2 = new Enemy(0, 60 + 80 * 1, 200);
 let bug3 = new Enemy(0, 60 + 80 * 2, 300);
 
 // Place all enemy objects in an array called allEnemies
