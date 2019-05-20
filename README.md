@@ -29,4 +29,4 @@ Use this [rubric](https://review.udacity.com/#!/rubrics/15/view) for self-checki
 
 ## Acknowledgments
 
-* Used the [Bootstrap](https://getbootstrap.com/) library
+* Used the [Bootstrap](https://getbootstrap.com/) library.
