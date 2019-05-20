@@ -1,3 +1,7 @@
+// Globals
+let times = 5;
+document.getElementById('times').innerHTML = times;
+
 // Enemies our player must avoid
 const Enemy = function Enemy(posX, posY, vel) {
     // Variables applied to each of our instances go here,
@@ -25,7 +29,7 @@ Enemy.prototype.update = function (dt) {
     this.posX += this.vel * dt;
 
     // Checking if the enemies are at the canvas border, if so
-    // reset their position and very the enemy speed
+    // reset their position and vary the enemy speed for more fun
     if (this.posX > 505) {
         this.posX = -50;
         let changeVel = Math.floor(Math.random() * 500 + 1);
@@ -35,10 +39,10 @@ Enemy.prototype.update = function (dt) {
     // Bug size ~(68x68)
     // Logic to check if the players starts to occupy 
     // the same space as the bugs
-    let checkRight = this.posX + 68;
-    let checkLeft = this.posX - 68;
-    let checkUp = this.posY - 68;
-    let checkDown = this.posY + 68;
+    let checkRight = this.posX + 65;
+    let checkLeft = this.posX - 65;
+    let checkUp = this.posY - 65;
+    let checkDown = this.posY + 65;
     // If the player is detected around the above boundaries, a bug 
     // got him and he must begin again
     if (player.posX > checkLeft && player.posX < checkRight &&
@@ -64,8 +68,7 @@ const Player = function Player() {
     this.sprite = 'images/char-boy.png';
 };
 
-Player.prototype.update = function (dt) {
-};
+Player.prototype.update = function (dt) {};
 
 Player.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.posX, this.posY);
@@ -78,7 +81,7 @@ Player.prototype.resetPlayer = function () {
 
 Player.prototype.handleInput = function (whereTo) {
     switch (whereTo) {
-        
+
         case 'left':
             if (this.posX >= this.horMove) {
                 this.posX -= this.horMove;
@@ -88,7 +91,7 @@ Player.prototype.handleInput = function (whereTo) {
             break;
 
         case 'down':
-            if (this.posY <= this.verMove * 4){
+            if (this.posY <= this.verMove * 4) {
                 this.posY += this.verMove;
             } else {
                 this.posY += 0;
@@ -105,8 +108,16 @@ Player.prototype.handleInput = function (whereTo) {
 
         case 'up':
             this.posY -= this.verMove;
-            if (this.posY <= 10){
+            if (this.posY <= 10) {
                 this.resetPlayer();
+                times--;
+                document.getElementById('times').innerHTML = times;
+                if (times === 0) {
+                    times = 5;
+                    document.getElementById('times').innerHTML = times;
+                    alert('Congratulations, you won!')
+                    player.resetPlayer();
+                }
             }
             break;
     }
